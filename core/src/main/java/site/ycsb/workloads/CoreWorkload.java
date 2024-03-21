@@ -823,8 +823,8 @@ public class CoreWorkload extends Workload {
     long keynum = transactioninsertkeysequence.nextValue();
 
     try {
-//      String dbkey = buildKeyName(keynum);
-      String dbkey =String.valueOf(keynum);
+      String dbkey = buildKeyName(keynum);
+      //String dbkey =String.valueOf(keynum);
       HashMap<String, ByteIterator> values = buildValues(dbkey);
       db.insert(table, dbkey, values);
     } finally {

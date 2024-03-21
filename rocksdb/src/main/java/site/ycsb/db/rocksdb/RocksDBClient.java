@@ -223,7 +223,7 @@ public class RocksDBClient extends DB {
         return Status.NOT_FOUND;
       }
       ////////////////////////////////////////////////////////////////
-      String content = "R " + key + "\n";
+      String content = "R " + Long.parseLong(key) + "\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){
@@ -291,7 +291,7 @@ public class RocksDBClient extends DB {
       //store
       rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(result));
       ////////////////////////////////////////////////////////////////
-      String content = "U " + key + " " + serializeValues(result) + "\n";
+      String content = "U " + Long.parseLong(key) + " " + Long.parseLong(key) + "\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){

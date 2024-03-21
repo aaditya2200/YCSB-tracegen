@@ -521,12 +521,13 @@ public class CoreWorkload extends Workload {
       keynum = Utils.hash(keynum);
     }
     String value = Long.toString(keynum);
-    int fill = zeropadding - value.length();
-    String prekey = "user";
-    for (int i = 0; i < fill; i++) {
-      prekey += '0';
-    }
-    return prekey + value;
+//    int fill = zeropadding - value.length();
+//    String prekey = "user";
+//    for (int i = 0; i < fill; i++) {
+//      prekey += '0';
+//    }
+//    return prekey + value;
+    return value;
   }
 
   /**
@@ -594,7 +595,8 @@ public class CoreWorkload extends Workload {
   @Override
   public boolean doInsert(DB db, Object threadstate) {
     int keynum = keysequence.nextValue().intValue();
-    String dbkey = String.valueOf(RandomUtils.nextLong(0, Long.MAX_VALUE));
+    // TODO MODIFY BUILD KEY NAME to build int keys
+    String dbkey = buildKeyName(keynum);
     long key = RandomUtils.nextLong(0, Long.MAX_VALUE);
     HashMap<String, ByteIterator> values = buildValues(dbkey);
     Status status;
@@ -705,8 +707,8 @@ public class CoreWorkload extends Workload {
     // choose a random key
     long keynum = nextKeynum();
 
-//    String keyname = buildKeyName(keynum);
-    String keyname = String.valueOf(keynum);
+    String keyname = buildKeyName(keynum);
+//cString keyname = String.valueOf(keynum);
     HashSet<String> fields = null;
 
     if (!readallfields) {
@@ -801,8 +803,8 @@ public class CoreWorkload extends Workload {
     // choose a random key
     long keynum = nextKeynum();
 
-//    String keyname = buildKeyName(keynum);
-    String keyname = String.valueOf(keynum);
+    String keyname = buildKeyName(keynum);
+//    String keyname = String.valueOf(keynum);
     HashMap<String, ByteIterator> values;
 
     if (writeallfields) {

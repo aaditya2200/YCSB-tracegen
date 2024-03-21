@@ -219,9 +219,9 @@ public class RocksDBClient extends DB {
 
       final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
       final byte[] values = rocksDb.get(cf, key.getBytes(UTF_8));
-      if(values == null) {
-        return Status.NOT_FOUND;
-      }
+      //if(values == null) {
+      //  return Status.NOT_FOUND;
+      //}
       ////////////////////////////////////////////////////////////////
       String content = "R " + Long.parseLong(key) + "\n";
       //System.out.print(content);
@@ -233,7 +233,7 @@ public class RocksDBClient extends DB {
       fileWriter.write(content);
       fileWriter.close();
       ////////////////////////////////////////////////////////////////
-      deserializeValues(values, fields, result);
+      //deserializeValues(values, fields, result);
       return Status.OK;
     } catch(final RocksDBException | IOException e) {
       LOGGER.error(e.getMessage(), e);

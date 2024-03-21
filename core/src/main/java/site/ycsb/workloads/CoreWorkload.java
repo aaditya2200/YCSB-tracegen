@@ -25,6 +25,8 @@ import site.ycsb.measurements.Measurements;
 import java.io.IOException;
 import java.util.*;
 
+import org.apache.commons.lang3.RandomUtils;
+
 /**
  * The core benchmark scenario. Represents a set of clients doing simple CRUD operations. The
  * relative proportion of different kinds of operations, and other properties of the workload,
@@ -592,9 +594,9 @@ public class CoreWorkload extends Workload {
   @Override
   public boolean doInsert(DB db, Object threadstate) {
     int keynum = keysequence.nextValue().intValue();
-    String dbkey = buildKeyName(keynum);
+    String dbkey = String.valueOf(RandomUtils.nextLong(0, Long.MAX_VALUE));
+    long key = RandomUtils.nextLong(0, Long.MAX_VALUE);
     HashMap<String, ByteIterator> values = buildValues(dbkey);
-
     Status status;
     int numOfRetries = 0;
     do {

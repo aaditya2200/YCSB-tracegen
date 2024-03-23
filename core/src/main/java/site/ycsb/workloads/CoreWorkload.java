@@ -518,9 +518,9 @@ public class CoreWorkload extends Workload {
 
   protected String buildKeyName(long keynum) {
     if (!orderedinserts) {
-      keynum = Utils.hash(keynum);
+      keynum = (int)Utils.hash(keynum);
     }
-    String value = Long.toString(keynum);
+    String value = Integer.toString((int)keynum);
 //    int fill = zeropadding - value.length();
 //    String prekey = "user";
 //    for (int i = 0; i < fill; i++) {

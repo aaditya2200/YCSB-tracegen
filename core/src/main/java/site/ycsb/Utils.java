@@ -43,6 +43,9 @@ public final class Utils {
   public static final long FNV_OFFSET_BASIS_64 = 0xCBF29CE484222325L;
   public static final long FNV_PRIME_64 = 1099511628211L;
 
+  public static final int FNV_OFFSET_BASIS_32 = 0x811c9dc5;
+  public static final int FNV_PRIME_32 = 0x01000193;
+
   /**
    * 64 bit FNV hash. Produces more "random" hashes than (say) String.hashCode().
    *
@@ -51,14 +54,14 @@ public final class Utils {
    */
   public static long fnvhash64(long val) {
     //from http://en.wikipedia.org/wiki/Fowler_Noll_Vo_hash
-    long hashval = FNV_OFFSET_BASIS_64;
+    int hashval = FNV_OFFSET_BASIS_32;
 
     for (int i = 0; i < 8; i++) {
       long octet = val & 0x00ff;
       val = val >> 8;
 
-      hashval = hashval ^ octet;
-      hashval = hashval * FNV_PRIME_64;
+      hashval = (int) (hashval ^ octet);
+      hashval = hashval * FNV_PRIME_32;
       //hashval = hashval ^ octet;
     }
     return Math.abs(hashval);

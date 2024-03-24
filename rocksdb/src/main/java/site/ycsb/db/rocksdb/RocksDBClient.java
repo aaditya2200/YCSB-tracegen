@@ -223,7 +223,7 @@ public class RocksDBClient extends DB {
       //  return Status.NOT_FOUND;
       //}
       ////////////////////////////////////////////////////////////////
-      String content = "R " + Integer.parseInt(key) + "\n";
+      String content = "Query " + Integer.parseInt(key) + " -> " + Integer.parseInt(key) + ":" +  "\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){
@@ -319,7 +319,7 @@ public class RocksDBClient extends DB {
       final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
       rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(values));
       ////////////////////////////////////////////////////////////////
-      String content = "I " + Integer.parseInt(key) + " " + Integer.parseInt(key) + "\n";
+      String content = "Inserting " + Integer.parseInt(key) + "\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){

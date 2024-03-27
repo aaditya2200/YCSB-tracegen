@@ -217,8 +217,8 @@ public class RocksDBClient extends DB {
         createColumnFamily(table);
       }
 
-      final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
-      final byte[] values = rocksDb.get(cf, key.getBytes(UTF_8));
+      //final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
+      //final byte[] values = rocksDb.get(cf, key.getBytes(UTF_8));
       //if(values == null) {
       //  return Status.NOT_FOUND;
       //}
@@ -316,8 +316,8 @@ public class RocksDBClient extends DB {
         createColumnFamily(table);
       }
 
-      final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
-      rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(values));
+      //final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
+      //rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(values));
       ////////////////////////////////////////////////////////////////
       String content = "I " + Long.parseLong(key) + " " + Long.parseLong(key) + "\n";
       //System.out.print(content);

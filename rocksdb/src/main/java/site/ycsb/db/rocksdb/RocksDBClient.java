@@ -289,7 +289,7 @@ public class RocksDBClient extends DB {
       result.putAll(values);
 
       //store
-      rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(result));
+      //rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(result));
       ////////////////////////////////////////////////////////////////
       String content = "U " + Long.parseLong(key) + "\n";
       //System.out.print(content);

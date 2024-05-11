@@ -23,6 +23,7 @@ import site.ycsb.generator.UniformLongGenerator;
 import site.ycsb.measurements.Measurements;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.*;
 
 import org.apache.commons.lang3.RandomUtils;
@@ -705,9 +706,9 @@ public class CoreWorkload extends Workload {
 
   public void doTransactionRead(DB db) {
     // choose a random key
-    long keynum = nextKeynum();
+    BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
 
-    String keyname = buildKeyName(keynum);
+    String keyname = buildKeyName(Long.parseLong(String.valueOf(keynum)));
 //cString keyname = String.valueOf(keynum);
     HashSet<String> fields = null;
 
@@ -801,9 +802,9 @@ public class CoreWorkload extends Workload {
 
   public void doTransactionUpdate(DB db) {
     // choose a random key
-    long keynum = nextKeynum();
+    BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
 
-    String keyname = buildKeyName(keynum);
+    String keyname = buildKeyName(Long.parseLong(String.valueOf(keynum)));
 //    String keyname = String.valueOf(keynum);
     HashMap<String, ByteIterator> values;
 
@@ -820,15 +821,15 @@ public class CoreWorkload extends Workload {
 
   public void doTransactionInsert(DB db) {
     // choose the next key
-    long keynum = transactioninsertkeysequence.nextValue();
+    BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
 
     try {
-      String dbkey = buildKeyName(keynum);
+      String dbkey = buildKeyName(Long.parseLong(String.valueOf(keynum)));
       //String dbkey =String.valueOf(keynum);
       HashMap<String, ByteIterator> values = buildValues(dbkey);
       db.insert(table, dbkey, values);
     } finally {
-      transactioninsertkeysequence.acknowledge(keynum);
+      transactioninsertkeysequence.acknowledge(Long.parseLong(String.valueOf(keynum)));
     }
   }
 

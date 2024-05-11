@@ -521,14 +521,8 @@ public class CoreWorkload extends Workload {
     if (!orderedinserts) {
       keynum = Utils.hash(keynum);
     }
-    String value = Long.toString((int) keynum);
-//    int fill = zeropadding - value.length();
-//    String prekey = "user";
-//    for (int i = 0; i < fill; i++) {
-//      prekey += '0';
-//    }
-//    return prekey + value;
-    return value;
+    int truncatedKey = (int) (keynum & 0xFFFFFFFFL); // Truncate to 32 bits and keep unsigned
+    return Integer.toUnsignedString(truncatedKey);
   }
 
   /**

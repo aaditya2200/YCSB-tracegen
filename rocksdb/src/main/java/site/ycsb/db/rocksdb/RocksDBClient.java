@@ -223,7 +223,7 @@ public class RocksDBClient extends DB {
       //  return Status.NOT_FOUND;
       //}
       ////////////////////////////////////////////////////////////////
-      String content = "R " + Long.parseLong(key) +  "\n";
+      String content = "Query " + Long.parseLong(key) +  " -> " + Long.parseLong(key) + ":\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){
@@ -277,21 +277,21 @@ public class RocksDBClient extends DB {
         createColumnFamily(table);
       }
 
-      final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
-      final Map<String, ByteIterator> result = new HashMap<>();
-      final byte[] currentValues = rocksDb.get(cf, key.getBytes(UTF_8));
-      if(currentValues == null) {
-        return Status.NOT_FOUND;
-      }
-      deserializeValues(currentValues, null, result);
+      //final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
+      //final Map<String, ByteIterator> result = new HashMap<>();
+      //final byte[] currentValues = rocksDb.get(cf, key.getBytes(UTF_8));
+      //if(currentValues == null) {
+      //  return Status.NOT_FOUND;
+      //}
+      //deserializeValues(currentValues, null, result);
 
       //update
-      result.putAll(values);
+      //result.putAll(values);
 
       //store
       //rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(result));
       ////////////////////////////////////////////////////////////////
-      String content = "U " + Long.parseLong(key) + "\n";
+      String content = "Updating " + Long.parseLong(key) + "\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){
@@ -319,7 +319,7 @@ public class RocksDBClient extends DB {
       //final ColumnFamilyHandle cf = COLUMN_FAMILIES.get(table).getHandle();
       //rocksDb.put(cf, key.getBytes(UTF_8), serializeValues(values));
       ////////////////////////////////////////////////////////////////
-      String content = "I " + Long.parseLong(key) + "\n";
+      String content = "Inserting " + Long.parseLong(key) + "\n";
       //System.out.print(content);
       File file = new File("test.txt");
       if(!file.exists()){

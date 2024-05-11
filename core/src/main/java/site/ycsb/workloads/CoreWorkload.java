@@ -706,7 +706,9 @@ public class CoreWorkload extends Workload {
 
   public void doTransactionRead(DB db) {
     // choose a random key
+    BigInteger maxValue = BigInteger.valueOf(2).pow(32);
     BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
+    keynum = keynum.mod(maxValue);
 
     String keyname = buildKeyName(Long.parseLong(String.valueOf(keynum)));
 //cString keyname = String.valueOf(keynum);
@@ -802,7 +804,9 @@ public class CoreWorkload extends Workload {
 
   public void doTransactionUpdate(DB db) {
     // choose a random key
+    BigInteger maxValue = BigInteger.valueOf(2).pow(32);
     BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
+    keynum = keynum.mod(maxValue);
 
     String keyname = buildKeyName(Long.parseLong(String.valueOf(keynum)));
 //    String keyname = String.valueOf(keynum);
@@ -821,7 +825,9 @@ public class CoreWorkload extends Workload {
 
   public void doTransactionInsert(DB db) {
     // choose the next key
+    BigInteger maxValue = BigInteger.valueOf(2).pow(32);
     BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
+    keynum = keynum.mod(maxValue);
 
     try {
       String dbkey = buildKeyName(Long.parseLong(String.valueOf(keynum)));

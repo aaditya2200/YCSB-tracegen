@@ -521,8 +521,8 @@ public class CoreWorkload extends Workload {
     if (!orderedinserts) {
       keynum = Utils.hash(keynum);
     }
-    int truncatedKey = (int) (keynum & 0xFFFFFFFFL); // Truncate to 32 bits and keep unsigned
-    return Integer.toUnsignedString(truncatedKey);
+    // Truncate to 32 bits and keep unsigned
+    return Long.toString(keynum & 0xFFFFFFFFL);
   }
 
   /**
@@ -702,7 +702,7 @@ public class CoreWorkload extends Workload {
     // choose a random key
     //BigInteger maxValue = BigInteger.valueOf(2).pow(32);
     //BigInteger keynum = BigInteger.valueOf(transactioninsertkeysequence.nextValue());
-    int keynum = Integer.parseInt(transactioninsertkeysequence.nextValue().toString());
+    long keynum = Long.parseLong(transactioninsertkeysequence.nextValue().toString());
 
     String keyname = buildKeyName(Long.parseLong(String.valueOf(keynum)));
 //cString keyname = String.valueOf(keynum);
